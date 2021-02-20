@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E824CDE225E1312F00262987 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E824CDE125E1312F00262987 /* CoreDataManager.swift */; };
 		E8B18C4025E0FDCA004C7F86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B18C3F25E0FDCA004C7F86 /* AppDelegate.swift */; };
 		E8B18C4225E0FDCA004C7F86 /* CatagoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B18C4125E0FDCA004C7F86 /* CatagoryViewController.swift */; };
 		E8B18C4525E0FDCA004C7F86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8B18C4325E0FDCA004C7F86 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E824CDE125E1312F00262987 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		E8B18C3C25E0FDCA004C7F86 /* TodoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8B18C3F25E0FDCA004C7F86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8B18C4125E0FDCA004C7F86 /* CatagoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatagoryViewController.swift; sourceTree = "<group>"; };
@@ -43,6 +45,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E824CDE025E130D900262987 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E824CDE125E1312F00262987 /* CoreDataManager.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		E8B18C3325E0FDCA004C7F86 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +72,7 @@
 		E8B18C3E25E0FDCA004C7F86 /* TodoList */ = {
 			isa = PBXGroup;
 			children = (
+				E824CDE025E130D900262987 /* ViewModel */,
 				E8B18C5425E10122004C7F86 /* Model */,
 				E8B18C5E25E103AE004C7F86 /* View */,
 				E8B18C5B25E10327004C7F86 /* Controller */,
@@ -176,6 +187,7 @@
 				E8B18C6025E109FB004C7F86 /* ListViewController.swift in Sources */,
 				E8B18C4825E0FDCA004C7F86 /* TodoList.xcdatamodeld in Sources */,
 				E8B18C5825E10166004C7F86 /* List.swift in Sources */,
+				E824CDE225E1312F00262987 /* CoreDataManager.swift in Sources */,
 				E8B18C5A25E10259004C7F86 /* Catagory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

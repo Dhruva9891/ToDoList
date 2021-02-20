@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--ToDo-->
+        <!--CatagoryViewController-->
         <scene sceneID="Ehd-lT-pXc">
             <objects>
-                <tableViewController id="8XO-Y1-Yo0" customClass="CatagoryViewController" customModule="TodoList" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="8XO-Y1-Yo0" userLabel="CatagoryViewController" customClass="CatagoryViewController" customModule="TodoList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Gga-wo-JSv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -35,6 +35,9 @@
                     <navigationItem key="navigationItem" title="ToDo" id="uJo-AN-vsI">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="dIK-5G-8au">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="addNewCategoryPressed:" destination="8XO-Y1-Yo0" id="dn3-nj-hSL"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -45,10 +48,10 @@
             </objects>
             <point key="canvasLocation" x="1048.8" y="47.226386806596707"/>
         </scene>
-        <!--List View Controller-->
+        <!--ListViewController-->
         <scene sceneID="bAp-uU-84A">
             <objects>
-                <tableViewController id="Koi-z1-4hP" customClass="ListViewController" customModule="TodoList" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Koi-z1-4hP" userLabel="ListViewController" customClass="ListViewController" customModule="TodoList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="MhW-NA-Th9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -69,6 +72,14 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="FeE-v3-aYh">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="drW-TJ-2bf">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="addNewListPressed:" destination="Koi-z1-4hP" id="13O-yk-c2b"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wni-tV-VIH" userLabel="First Responder" sceneMemberID="firstResponder"/>
