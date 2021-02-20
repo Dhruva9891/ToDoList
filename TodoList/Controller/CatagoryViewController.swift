@@ -27,7 +27,7 @@ class CatagoryViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "catagoryCell", for: indexPath)
-        cell.textLabel?.text = "Category names"
+        cell.textLabel?.text = "Category"
         return cell
         
     }
