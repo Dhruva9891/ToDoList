@@ -8,16 +8,38 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class CoreDataManager {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
     
     func saveContext () {
         do {
             try context.save()
         } catch {
             print("Error:\(error)")
+        }
+    }
+    
+    func loadFromCataGory()->[Catagory]? {
+        let request:NSFetchRequest<Catagory> = Catagory.fetchRequest()
+        do {
+            let categoryArr = try context.fetch(request)
+            return categoryArr
+        } catch {
+            print("Error:\(error)")
+            return nil
+        }
+    }
+    
+    func loadFromList()->[List]? {
+        let request:NSFetchRequest<List> = List.fetchRequest()
+        do {
+            let listArr = try context.fetch(request)
+            return listArr
+        } catch {
+            print("Error:\(error)")
+            return nil
         }
     }
 }

@@ -8,31 +8,62 @@
 
 import UIKit
 
-class CatagoryViewController: UITableViewController {
+class CatagoryViewController: UITableViewController,UITextFieldDelegate {
     
     var category:Catagory?
     var categoryArr:[Catagory]?
     var coreDataManager = CoreDataManager()
-    let filePath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+    var alertAction:UIAlertAction?
+    var alertTextField:UITextField?
     
-
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        print(filePath)
-        
-        let category = Catagory(context: coreDataManager.context)
-        category.name = "Shopping"
-        categoryArr = [category]
-        coreDataManager.saveContext()
+        if let array = self.coreDataManager.loadFromCataGory() {
+            categoryArr = array
+        }
         
     }
     
     
     @IBAction func addNewCategoryPressed(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController.init(title: "Category", message: "", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.delegate = self
+            self.alertTextField = textField
+        }
+        let action = UIAlertAction.init(title: "Add Category", style: .default) { (action) in
+            if let textEntered = self.alertTextField?.text{
+                let category = Catagory(context: self.coreDataManager.context)
+                category.name = textEntered
+                self.coreDataManager.saveContext()
+                if let array = self.coreDataManager.loadFromCataGory() {
+                    self.categoryArr = array
+                    self.tableView.reloadData()
+                }
+            }
+        }
+        self.alertAction = action
+        action.isEnabled = false
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
         
     }
+    
+    //MARK: - TextField delegate methods
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if let action = alertAction {
+            if let count = textField.text?.count {
+                action.isEnabled = count > 0 ? true : false
+            }
+        }
+    }
+    
     
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -60,7 +91,7 @@ class CatagoryViewController: UITableViewController {
         }
         performSegue(withIdentifier: "toListScreen", sender: nil)
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toListScreen" {
             let listVC = segue.destination as! ListViewController
