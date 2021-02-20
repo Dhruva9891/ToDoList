@@ -96,7 +96,6 @@ class CatagoryViewController: UITableViewController,UITextFieldDelegate {
         if segue.identifier == "toListScreen" {
             let listVC = segue.destination as! ListViewController
             listVC.category = category
-            listVC.coreDataManager = coreDataManager
         }
     }
 }
