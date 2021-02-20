@@ -10,15 +10,27 @@ import UIKit
 
 class ListViewController: UITableViewController {
     
-    var titleText:String?
+    var listArr:[List]?
+    var coreDataManager:CoreDataManager?
+    var category:Catagory?
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let title = titleText {
+        if let title = category?.name {
             self.navigationItem.title = title
         }
+        
+        if let coreDataMgr = coreDataManager,let categoryObj = category {
+            let list = List(context: coreDataMgr.context)
+            list.title = "Apples"
+            list.done = false
+            list.parentCategory = categoryObj
+            listArr = [list]
+            coreDataMgr.saveContext()
+        }
+    
     }
     
     @IBAction func addNewListPressed(_ sender: UIBarButtonItem) {

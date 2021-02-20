@@ -10,7 +10,7 @@ import UIKit
 
 class CatagoryViewController: UITableViewController {
     
-    var categoryName:String?
+    var category:Catagory?
     var categoryArr:[Catagory]?
     var coreDataManager = CoreDataManager()
     let filePath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
@@ -56,7 +56,7 @@ class CatagoryViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let categoryObj = categoryArr?[indexPath.row] {
-            categoryName = categoryObj.name
+            category = categoryObj
         }
         performSegue(withIdentifier: "toListScreen", sender: nil)
     }
@@ -64,7 +64,8 @@ class CatagoryViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toListScreen" {
             let listVC = segue.destination as! ListViewController
-            listVC.titleText = categoryName
+            listVC.category = category
+            listVC.coreDataManager = coreDataManager
         }
     }
 }
