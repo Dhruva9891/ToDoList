@@ -36,7 +36,7 @@ class CoreDataManager {
         let request:NSFetchRequest<List> = List.fetchRequest()
 
         if let title = category.name {
-            request.predicate = NSPredicate.init(format: "parentCategory == %@", title)
+            request.predicate = NSPredicate.init(format: "parentCategory.name MATCHES %@", title)
         }
         
         do {
