@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CatagoryViewController: UITableViewController,UITextFieldDelegate {
+class CatagoryViewController: UITableViewController,UITextFieldDelegate,UISearchBarDelegate {
     
     var category:Catagory?
     var categoryArr:[Catagory]?
@@ -53,6 +53,12 @@ class CatagoryViewController: UITableViewController,UITextFieldDelegate {
         self.present(alert, animated: true, completion: nil)
         
     }
+    
+    //MARK: - SearchBar delegate methods
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print(searchText)
+    }
+    
     
     //MARK: - TextField delegate methods
     

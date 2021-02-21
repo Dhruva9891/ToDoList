@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ListViewController: UITableViewController,UITextFieldDelegate {
+class ListViewController: UITableViewController,UITextFieldDelegate,UISearchBarDelegate {
     
     var listArr:[List]?
     var coreDataManager = CoreDataManager()
@@ -23,13 +23,10 @@ class ListViewController: UITableViewController,UITextFieldDelegate {
         
         if let categoryObj = category {
             self.navigationItem.title = categoryObj.name
-            if let array = coreDataManager.loadFromList(with: categoryObj) {
+            if let array = coreDataManager.loadFromList(with: categoryObj, searchText: nil) {
                 self.listArr = array
             }
         }
-        
-       
-
     }
     
     @IBAction func addNewListPressed(_ sender: UIBarButtonItem) {
@@ -47,7 +44,7 @@ class ListViewController: UITableViewController,UITextFieldDelegate {
                 list.parentCategory = categoryObj
                 self.coreDataManager.saveContext()
                 
-                if let array = self.coreDataManager.loadFromList(with: categoryObj) {
+                if let array = self.coreDataManager.loadFromList(with: categoryObj, searchText: nil) {
                     self.listArr = array
                     self.tableView.reloadData()
                 }
@@ -59,6 +56,22 @@ class ListViewController: UITableViewController,UITextFieldDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
+    
+    //MARK: - SearchBar delegate methods
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        var searchString:String?
+        
+        if searchText.count != 0 {
+            searchString = searchText
+        }
+        
+        if let categoryObj = category {
+            if let array = self.coreDataManager.loadFromList(with: categoryObj, searchText: searchString) {
+                self.listArr = array
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     
     //MARK: - TextField delegate methods

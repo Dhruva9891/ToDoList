@@ -32,11 +32,20 @@ class CoreDataManager {
         }
     }
     
-    func loadFromList(with category:Catagory)->[List]? {
+    func loadFromList(with category:Catagory, searchText:String?)->[List]? {
         let request:NSFetchRequest<List> = List.fetchRequest()
 
-        if let title = category.name {
-            request.predicate = NSPredicate.init(format: "parentCategory.name MATCHES %@", title)
+        if let title = category.name{
+            
+            let predicateOne = NSPredicate.init(format: "parentCategory.name MATCHES %@", title)
+            request.predicate = predicateOne
+            
+            if let searchString = searchText  {
+                let predicateTwo = NSPredicate.init(format: "title CONTAINS[cd] %@", searchString)
+                let compoundPredicate = NSCompoundPredicate.init(andPredicateWithSubpredicates: [predicateOne,predicateTwo])
+                request.predicate = compoundPredicate
+            }
+            
         }
         
         do {
