@@ -32,8 +32,13 @@ class CoreDataManager {
         }
     }
     
-    func loadFromList()->[List]? {
+    func loadFromList(with category:Catagory)->[List]? {
         let request:NSFetchRequest<List> = List.fetchRequest()
+
+        if let title = category.name {
+            request.predicate = NSPredicate.init(format: "parentCategory == %@", title)
+        }
+        
         do {
             let listArr = try context.fetch(request)
             return listArr

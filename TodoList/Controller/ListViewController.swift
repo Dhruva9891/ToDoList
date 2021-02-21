@@ -21,13 +21,14 @@ class ListViewController: UITableViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let title = category?.name {
-            self.navigationItem.title = title
+        if let categoryObj = category {
+            self.navigationItem.title = categoryObj.name
+            if let array = coreDataManager.loadFromList(with: categoryObj) {
+                self.listArr = array
+            }
         }
         
-        if let array = coreDataManager.loadFromList() {
-            self.listArr = array
-        }
+       
 
     }
     
@@ -45,7 +46,8 @@ class ListViewController: UITableViewController,UITextFieldDelegate {
                 list.done = false
                 list.parentCategory = categoryObj
                 self.coreDataManager.saveContext()
-                if let array = self.coreDataManager.loadFromList() {
+                
+                if let array = self.coreDataManager.loadFromList(with: categoryObj) {
                     self.listArr = array
                     self.tableView.reloadData()
                 }
@@ -56,6 +58,8 @@ class ListViewController: UITableViewController,UITextFieldDelegate {
         alertAction = action
         self.present(alert, animated: true, completion: nil)
     }
+    
+    
     
     //MARK: - TextField delegate methods
     func textFieldDidChangeSelection(_ textField: UITextField) {
